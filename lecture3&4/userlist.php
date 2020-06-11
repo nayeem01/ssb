@@ -17,6 +17,7 @@ session_start();
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
     <title>User List</title>
     <style type = "text/css">
         section{ 
@@ -34,7 +35,7 @@ session_start();
             <div class="row">
                 <div class="col-md-12">
                     <h3>All member list</h3>
-                    <table class="table table-bordered table-stripped">
+                    <table id ="example" class="table table-bordered table-stripped">
                         <thead class >
                             <tr>
                             <th scope="col">#SI</th>
@@ -106,20 +107,20 @@ session_start();
                         
                         </tbody>
                         </table>
-<?php
-    if(isset($_GET['delete'])){
-        $delid = $_GET['delete'];
+                        <?php
+                            if(isset($_GET['delete'])){
+                                $delid = $_GET['delete'];
 
-        $sql = "DELETE FROM user WHERE id = '$delid' ";
-        $confirm = mysqli_query($db,$sql);
+                                $sql = "DELETE FROM user WHERE id = '$delid' ";
+                                $confirm = mysqli_query($db,$sql);
 
-        if(isset($confirm)){
-            header("Location: userlist.php");
-        }else{
-            die("error" . mysqli_error($db) );
-        }
-    }
-?>
+                                if(isset($confirm)){
+                                    header("Location: userlist.php");
+                                }else{
+                                    die("error" . mysqli_error($db) );
+                                }
+                            }
+                        ?>
                 </div>
             </div>
         </div>
@@ -127,8 +128,22 @@ session_start();
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
+    <script scr="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script scr="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    
+    </script>
+ <?php
+  ob_end_flush();
+ ?>
+ 
  </body>
 </html>
