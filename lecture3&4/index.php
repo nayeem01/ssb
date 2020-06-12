@@ -137,16 +137,14 @@ session_start();
  <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" ></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" ></script>
-    <script scr="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script scr="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-    
+    	$(document).ready(function() {
+		    $('#example').DataTable();
+		} );
     </script>
  <?php
   ob_end_flush();
