@@ -39,7 +39,7 @@ session_start();
                                 <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt=""/>
                                 <h3>Welcome</h3>
                                 <p>You are 30 seconds away from entering!</p>
-                                <input type="submit" name="" value="Login"/><br/>
+                                <a href="login.php" class="txt3 btnRegister"> Login </a>
                             </div>
                             <div class="col-md-9 register-right">
                                 <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
