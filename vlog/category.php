@@ -26,18 +26,83 @@
    <section class="content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <!-- card strat -->
                     <div class="card card-primary card-outline">
-                        <div class="card-body">
-                             <h5 class="card-title">Card title</h5>
+                        
+                        <div class="card-header">
+                        <h3 class="card-title">Add new category</h3>
+                        </div> 
 
-                                <p class="card-text">
-                                Some quick example text to build on the card title and make up the bulk of the card's
-                                content.
-                                </p>
-                            <a href="#" class="card-link">Card link</a>
-                            <a href="#" class="card-link">Another link</a>
+                        <div class="card-body">
+
+                                <!-- Form -->
+
+                            <form action="" method="POST">
+                                <div class="form-group">
+                                    <label>Category Name</label>
+                                    <input type="text" name="name" class="form-control" required="required">
+                                </div>
+                                <div class="form-group">
+                                    <label> Category Description</label>
+                                    <textarea name="des" id="" class="form-control" rows="4"></textarea>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="my-input">Category status</label>
+                                    <select name="status" id="" class="form-control" >
+                                    <option value="1">Active</option>
+                                    <option value="0">In-Active</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="submit"  name="add_cat" class="btn btn-primary">
+                                </div>
+                            </form>
+                                
+                        </div>
+                     </div> 
+                        <!-- card end -->
+                </div>
+
+                <div class="col-md-6">
+                    <!-- card strat -->
+                    <div class="card card-primary card-outline">
+                        <div class="card-header">
+                          <h3 class="card-title">Manage new category</h3>
+                        </div>
+                             <div class="card-body">
+                             <table class="table table-bordered table-hover">
+                            <thead class="thead-dark">
+                                <tr>
+                                <th scope="col">#SI.</th>
+                                <th scope="col">category Name</th>
+                                <th scope="col">Status</th>
+                                <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <th scope="row">1</th>
+                                <td>Mark</td>
+                                <td>Otto</td>
+                                <td>
+                                    <div class="action-bar">
+                                    <ul>
+                                        <li>
+                                        <a href=""><i class="fa fa-edit"></i></a>
+                                        </li>
+                                        <li>
+                                        <a href=""><i class="fa fa-trash"></i></a>
+                                        </li>
+                                    </ul>
+                                    </div>
+                                </td>
+                                </tr>
+                            </tbody>
+                            </table>
+                                
                         </div>
                      </div> 
                         <!-- card end -->
