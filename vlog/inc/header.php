@@ -1,3 +1,7 @@
+<?php 
+ ob_start();
+ include("inc/db.php");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +30,9 @@
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+  <!-- custom css -->
+  <link rel="stylesheet" href="dist/css/style.css">
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
