@@ -118,14 +118,14 @@
                                             
                                             <td>
                                                 <div class="action-bar">
-                                                <ul>
-                                                    <li>
-                                                    <a href="category.php?edit=<?php echo $id ?>"><i class="fa fa-edit"></i></a>
-                                                    </li>
-                                                    <li>
-                                                    <a href="" data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i></a>
-                                                    </li>
-                                                </ul>
+                                                    <ul>
+                                                        <li>
+                                                        <a href="category.php?edit=<?php echo $id ?>"><i class="fa fa-edit"></i></a>
+                                                        </li>
+                                                        <li>
+                                                        <a href="" data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i></a>
+                                                        </li>
+                                                    </ul>
                                                 </div>
                                             </td>
                                         </tr>
