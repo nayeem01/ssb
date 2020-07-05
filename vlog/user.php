@@ -123,24 +123,23 @@
                                          </ul>
                                     </div>
                                     </td>
-                                    </tr>
+                                    </tr>                        
 
-                                </tbody>
+                                  <?php  } ?>
+
+
+                                 </tbody>
                                 </table>
 
                              </div>
                           </div> 
-                     <!-- card end -->
                      </div>
                 </div>
              </div>
         </section>
-    <!-- Body content end -->
 
-
-  <?php  }
   
-    }elseif ($do == 'add') { ?>
+<?php    }elseif ($do == 'add') { ?>
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -148,10 +147,86 @@
                    
                     <div class="card card-primary card-outline">
                     <div class="card-header">
-                        <h3 class="card-title">Add User</h3>
+                        <h3 class="card-title">Add New User</h3>
                     </div>
                         <div class="card-body">
+                        
+                        
+                        <form action="user.php?do=insert" method="POST" enctype="multupaet/form-data">
+ 
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                <label for="name">Full Name</label>
+                                <input type="name" class="form-control" name="name">
+                                </div>
+                                <div class="form-group col-md-6">
+                                <label for="phone">Phone No.</label>
+                                <input type="text" class="form-control" name="phone">
+                                </div>
+                            </div>
+
+                            <div class= "form-row">
+                            <div class="form-group col-md-6">
+                                <label for="username">User Name</label>
+                                <input type="text" class="form-control" name="username" >
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="address">Adress</label>
+                                <input type="text" class="form-control" name="address" >
+                            </div>
+
+                            </div>
+                            <div class= "form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="email">Email</label>
+                                    <input type="text" class="form-control" name="email">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <label for="role">Role</label>
+                                    <select id="status" class="form-control" name="role">
+                                        <option selected>Choose...</option>
+                                        <option value=0>inactive</option>
+                                        <option value=1>active</option>
+                                    </select>
+                                </div> 
                             
+                            </div>
+                            
+
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                <label for="password">Password</label>
+                                <input type="text" class="form-control" name="password">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                <label for="status">Status</label>
+                                <select id="status" class="form-control" name="status">
+                                    <option selected>Choose...</option>
+                                    <option value=1>super admin</option>
+                                    <option value=2>editor</option>
+                                </select>
+                                </div> 
+                            </div>
+                            <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="repassword">Retype Password</label>
+                                <input type="text" class="form-control" id="repassword">
+                            </div>
+                            
+                            <div class="form-group col-md-6">
+                            <label for="image">Profile picture</label>
+                                <input type="file" name="image" class="form-control-file">
+                            </div>
+                           
+                            </div>
+                            <div class="col text-center">
+                                 <button type="submit" class="btn btn-primary">Sign up</button>
+                            </div>
+                            </form>
+
+
                         </div>
                      </div> 
                       
