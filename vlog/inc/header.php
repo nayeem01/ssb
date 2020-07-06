@@ -33,6 +33,9 @@
 
   <!-- custom css -->
   <link rel="stylesheet" href="dist/css/style.css">
+
+
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">

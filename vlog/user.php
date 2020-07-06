@@ -2,6 +2,7 @@
 <?php include('inc/topbar.php'); ?>
 <?php include('inc/menu.php'); ?>
 
+
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
@@ -152,12 +153,12 @@
                         <div class="card-body">
                         
                         
-                        <form action="user.php?do=insert" method="POST" enctype="multupaet/form-data">
+                        <form action="user.php?do=insert" method="POST" enctype="multipart/form-data">
  
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                 <label for="name">Full Name</label>
-                                <input type="name" class="form-control" name="name">
+                                <input type="name" class="form-control" name="fullname">
                                 </div>
                                 <div class="form-group col-md-6">
                                 <label for="phone">Phone No.</label>
@@ -212,7 +213,7 @@
                             <div class="form-row">
                             <div class="form-group col-md-6">
                                 <label for="repassword">Retype Password</label>
-                                <input type="text" class="form-control" id="repassword">
+                                <input type="text" class="form-control" name="repassword">
                             </div>
                             
                             <div class="form-group col-md-6">
@@ -224,7 +225,7 @@
                             <div class="col text-center">
                                  <button type="submit" class="btn btn-primary">Sign up</button>
                             </div>
-                            </form>
+                        </form>
 
 
                         </div>
@@ -235,10 +236,43 @@
         </div>
    </section>
 
+<?php }elseif($do == 'insert'){
+   
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+       
+        $name     = $_POST['fullname'];
+        $email    = $_POST['email'];
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $repass   = $_POST['repassword'];
+        $address  = $_POST['address'];
+        $phone    = $_POST['phone'];
+        $status   = $_POST['status'];
+        $role     = $_POST['role'];
 
+        #image read
+        $image     = $_FILES['image']['name'];
+        $imageTmp = $_FILES['image']['tmp_name'];
 
-    <?php }elseif($do == 'insert'){
+        if ($password == $repass ) {
+            $hasspass = sha1($password);
 
+            $image = rand(0,5000).'_'.$image;
+            move_uploaded_file($imageTmp,"img/users/".$image);
+
+            $sql = "INSERT INTO users (fullname, email, username, password, phone, address, role, status, image, join_date) 
+            VALUES ('$name','$email','$username','$hasspass','$phone','$address','$role','$status','$image',now())";
+           
+           $adduser = mysqli_query($db,$sql);
+
+           if($adduser){
+               header('Location: user.php?do=manage');
+           }else{
+               die();
+           }
+        }
+       
+    }
     }elseif ($do == 'edit') {
         # code...el
     }elseif ($do == 'update') {
