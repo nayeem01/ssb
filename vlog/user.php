@@ -116,7 +116,7 @@
                                     <div class="action-bar">
                                         <ul class="justify-content-center">
                                            <li>
-                                            <a href=""><i class="fa fa-edit"></i></a>
+                                            <a href="user.php?do=edit&id=<?php echo $id; ?>"><i class="fa fa-edit"></i></a>
                                             </li>
                                             <li>
                                             <a href=""><i class="fa fa-trash"></i></a>
@@ -270,11 +270,147 @@
            }else{
                die();
            }
+        }else {
+           echo "invalid";
         }
        
     }
     }elseif ($do == 'edit') {
-        # code...el
+
+       if(isset($_GET['id'])){
+            $userid = $_GET['id'];
+            $sql = "SELECT * FROM users WHERE id  = '$userid' ";
+            $theuser = mysqli_query($db, $sql);
+
+            while ($row = mysqli_fetch_assoc($theuser)) {
+                $id = $row['id'];
+                $name = $row['fullname'];
+                $email = $row['email'];
+                $username = $row['username'];
+                $password = $row['password'];
+                $address = $row['address'];
+                $phone = $row['phone'];
+                $status = $row['status'];
+                $image = $row['image'];
+                $role= $row['role'];
+                $date = $row['join_date'];
+                ?>
+                <section class="content">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                            
+                                <div class="card card-primary card-outline">
+                                <div class="card-header">
+                                    <h3 class="card-title">Update user info</h3>
+                                </div>
+                                    <div class="card-body">
+                                    
+                                    
+                                    <form action="user.php?do=update" method="POST" enctype="multipart/form-data">
+            
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                            <label for="name">Full Name</label>
+                                            <input type="name" class="form-control" name="fullname" value = "<?php echo $username; ?>">
+                                            </div>
+                                            <div class="form-group col-md-6">
+                                            <label for="phone">Phone No.</label>
+                                            <input type="text" class="form-control" name="phone" value = "<?php echo $phone; ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class= "form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="username">User Name</label>
+                                            <input type="text" class="form-control" name="username"  value = "<?php echo $name; ?>">
+                                        </div>
+                                        <div class="form-group col-md-6">
+                                            <label for="address">Adress</label>
+                                            <input type="text" class="form-control" name="address" value = "<?php echo $address; ?>">
+                                        </div>
+
+                                        </div>
+                                        <div class= "form-row">
+                                            <div class="form-group col-md-6">
+                                                <label for="email">Email</label>
+                                                <input type="text" class="form-control" name="email">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                                <label for="role">Role</label>
+                                                <select id="status" class="form-control" name="role">
+                                                    <option selected>Choose...</option>
+                                                    <option value="0" <?php if ($role == 0) {
+                                                        echo 'selected';
+                                                    }?>>inactive</option>
+                                                    <option value="1" <?php if ($role == 1) {
+                                                        echo 'selected';
+                                                    }?>>active</option>
+                                                </select>
+                                            </div> 
+                                        
+                                        </div>
+                                        
+
+                                        <div class="form-row">
+                                            <div class="form-group col-md-6">
+                                            <label for="password">Password</label>
+                                            <input type="text" class="form-control" name="password" value = "*****">
+                                            </div>
+
+                                            <div class="form-group col-md-6">
+                                            <label for="status">Status</label>
+                                            <select id="status" class="form-control" name="status">
+                                                <option selected>Choose...</option>
+                                                <option value="1" <?php if ($status == 1) {
+                                                        echo 'selected';
+                                                    }?>>super admin</option>
+                                                <option value="2" <?php if ($status == 2) {
+                                                        echo 'selected';
+                                                    }?>>editor</option>
+                                            </select>
+                                            </div> 
+                                        </div>
+                                        <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label for="repassword">Retype Password</label>
+                                            <input type="text" class="form-control" name="repassword" value ="*****" >
+                                        </div>
+                                        
+                                        <div class="form-group col-md-6">
+                                        <label for="image">Profile picture</label>
+                                                    <?php 
+                                                      if (!empty($image)) {?>
+                                                            <img src="img/users/<?php echo $image; ?>" width=35>
+                                                      <?php } else { ?>
+                                                            <img src="img/users/default.png" width=35>
+                                                      <?php }
+                                                    ?>
+                                            <input type="file" name="image" class="form-control-file">
+                                        </div>
+                                    
+                                        </div>
+                                        <div class="col text-center">
+                                            <input type="submit" class="btn btn-primary" name="updateuser" value="save changes">
+                                        </div>
+                                    </form>
+
+
+                                    </div>
+                                </div> 
+                                
+                            </div>
+                    </div>
+                    </div>
+            </section>
+
+           <?php  }
+
+
+       }
+
+        
     }elseif ($do == 'update') {
         # code...
     }elseif ($do == 'delete') {
