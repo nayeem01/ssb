@@ -119,12 +119,37 @@
                                             <a href="user.php?do=edit&id=<?php echo $id; ?>"><i class="fa fa-edit"></i></a>
                                             </li>
                                             <li>
-                                            <a href=""><i class="fa fa-trash"></i></a>
+                                            <a href="" data-toggle="modal" data-target="#delete"><i class="fa fa-trash"></i></a>
                                             </li>
                                          </ul>
                                     </div>
                                     </td>
-                                    </tr>                        
+                                    </tr>  
+                                    <!-- modal -->
+
+                                    <div class="modal fade" id="delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <h3>Are you sure ?</h3>
+                                            </div>
+                                            <div class="modal-footer text-center">
+                                           
+                                                
+                                                <button type="button" class="btn btn-secondary btn-center" data-dismiss="modal">Close</button>
+                                                <a href="user.php?do=delete&id=<?php echo $id; ?>"class="btn btn-primary btn-danger"> Yes</a>
+                                                                                    
+                                                
+                                            </div>
+                                            </div>
+                                        </div>
+                                        </div>                      
 
                                   <?php  } ?>
 
@@ -187,8 +212,8 @@
                                     <label for="role">Role</label>
                                     <select id="status" class="form-control" name="role">
                                         <option selected>Choose...</option>
-                                        <option value=0>inactive</option>
-                                        <option value=1>active</option>
+                                        <option value=1>admin</option>
+                                        <option value=2>editor</option>
                                     </select>
                                 </div> 
                             
@@ -205,8 +230,8 @@
                                 <label for="status">Status</label>
                                 <select id="status" class="form-control" name="status">
                                     <option selected>Choose...</option>
-                                    <option value=1>super admin</option>
-                                    <option value=2>editor</option>
+                                    <option value=0>inactive</option>
+                                    <option value=1>active</option>
                                 </select>
                                 </div> 
                             </div>
@@ -312,7 +337,7 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                             <label for="name">Full Name</label>
-                                            <input type="name" class="form-control" name="fullname" value = "<?php echo $username; ?>">
+                                            <input type="name" class="form-control" name="fullname" value = "<?php echo $username; ?>" >
                                             </div>
                                             <div class="form-group col-md-6">
                                             <label for="phone">Phone No.</label>
@@ -323,7 +348,7 @@
                                         <div class= "form-row">
                                         <div class="form-group col-md-6">
                                             <label for="username">User Name</label>
-                                            <input type="text" class="form-control" name="username"  value = "<?php echo $name; ?>">
+                                            <input type="text" class="form-control" name="username"  value = "<?php echo $name; ?>" disabled>
                                         </div>
                                         <div class="form-group col-md-6">
                                             <label for="address">Adress</label>
@@ -334,17 +359,17 @@
                                         <div class= "form-row">
                                             <div class="form-group col-md-6">
                                                 <label for="email">Email</label>
-                                                <input type="text" class="form-control" name="email">
+                                                <input type="text" class="form-control" name="email" value = "<?php echo $email; ?>">
                                             </div>
 
                                             <div class="form-group col-md-6">
                                                 <label for="role">Role</label>
-                                                <select id="status" class="form-control" name="role">
+                                                <select id="status" class="form-control" name="role" >
                                                     <option selected>Choose...</option>
-                                                    <option value="0" <?php if ($role == 0) {
+                                                    <option value="1" <?php if ($role == 1) {
                                                         echo 'selected';
                                                     }?>>inactive</option>
-                                                    <option value="1" <?php if ($role == 1) {
+                                                    <option value="2" <?php if ($role == 2) {
                                                         echo 'selected';
                                                     }?>>active</option>
                                                 </select>
@@ -356,17 +381,17 @@
                                         <div class="form-row">
                                             <div class="form-group col-md-6">
                                             <label for="password">Password</label>
-                                            <input type="text" class="form-control" name="password" value = "*****">
+                                            <input type="password" class="form-control" name="password" placeholder = "New password" >
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                            <label for="status">Status</label>
-                                            <select id="status" class="form-control" name="status">
-                                                <option selected>Choose...</option>
-                                                <option value="1" <?php if ($status == 1) {
+                                            <label >Status</label>
+                                            <select  class="form-control" name="status" >
+                                            <option selected>Choose...</option>
+                                                <option value="0" <?php if ($status == 0) {
                                                         echo 'selected';
                                                     }?>>super admin</option>
-                                                <option value="2" <?php if ($status == 2) {
+                                                <option value="1" <?php if ($status == 1) {
                                                         echo 'selected';
                                                     }?>>editor</option>
                                             </select>
@@ -375,7 +400,7 @@
                                         <div class="form-row">
                                         <div class="form-group col-md-6">
                                             <label for="repassword">Retype Password</label>
-                                            <input type="text" class="form-control" name="repassword" value ="*****" >
+                                            <input type="password" class="form-control" name="repassword" placeholder = "Repeat password" >
                                         </div>
                                         
                                         <div class="form-group col-md-6">
@@ -392,6 +417,7 @@
                                     
                                         </div>
                                         <div class="col text-center">
+                                            <input type="hidden" name="updateuserid" value= "<?php echo $id; ?>">
                                             <input type="submit" class="btn btn-primary" name="updateuser" value="save changes">
                                         </div>
                                     </form>
@@ -412,9 +438,97 @@
 
         
     }elseif ($do == 'update') {
-        # code...
-    }elseif ($do == 'delete') {
-        # code...
+
+        if ( $_SERVER['REQUEST_METHOD'] == 'POST' ){
+            $updateUserID = $_POST['updateuserid'];
+  
+            $fullname     = $_POST['fullname'];
+            $email        = $_POST['email'];
+            $password     = $_POST['password'];
+            $rePassword   = $_POST['rePassword'];
+            $phone        = $_POST['phone'];
+            $address      = $_POST['address'];
+            $role         = $_POST['role'];
+            $status       = $_POST['status'];
+  
+            $image        = $_FILES['image']['name'];
+            $imageTmp     = $_FILES['image']['tmp_name'];
+  
+            if ( !empty($password) && !empty($image) ){
+
+                // Encryption Password
+                if ( $password == $rePassword ){
+                  $hassedPass = sha1($password);
+                }            
+    
+                // Change the Image File Name
+                $image = rand(0,5000000) . '_' . $image;
+                move_uploaded_file($imageTmp, "img/users/" . $image);
+    
+                // Delete Existing Image
+                $query = "SELECT * FROM users WHERE id = '$updateUserID'";
+                $read_user_data = mysqli_query($db, $query);
+                while( $row = mysqli_fetch_assoc($read_user_data) ){
+                  $existingImage      = $row['image'];
+                }
+                unlink("img/users/". $existingImage);
+    
+                // Update SQL With Image and Password
+                $sql = "UPDATE users SET fullname='$fullname', email='$email', password='$hassedPass', phone='$phone', address='$address', role='$role', status='$status', image='$image' WHERE id = '$updateUserID'";
+    
+                $addUser = mysqli_query($db, $sql);
+    
+                if ( $addUser ){
+                  header("Location: user.php?do=manage");
+                }
+                else{
+                  die( "MySQLi Error. " . mysqli_error($db) );
+                }            
+              
+            
+            
+            
+            }else{
+            
+            
+            // Update SQL
+            $sql = "UPDATE users SET fullname='$fullname', email='$email', phone='$phone', address='$address', role='$role', status='$status' WHERE id = '$updateUserID'";
+            
+            $addUser = mysqli_query($db, $sql);
+            
+            if ( $addUser ){
+              header("Location: user.php?do=manage");
+            }
+            else{
+              die();
+            }
+            }
+            
+        }
+  }elseif ($do == 'delete') {
+    if ( isset($_GET['id']) ){
+        $delete_user_id = $_GET['id'];
+
+          // Delete Existing Image
+          $query = "SELECT * FROM users WHERE id = '$delete_user_id'";
+          $read_user_data = mysqli_query($db, $query);
+          while( $row = mysqli_fetch_assoc($read_user_data) ){
+            $existingImage      = $row['image'];
+          }
+          unlink("img/users/". $existingImage);
+
+          // Delete The User
+          $sql = "DELETE FROM users WHERE id = '$delete_user_id'";
+          $confirmDelete = mysqli_query($db, $sql);
+
+          if ( $confirmDelete ){
+            header("Location: user.php");
+          }
+          else{
+            die("MySQLi Error. " . mysqli_error($db));
+          }
+
+      }
     }
 ?>
 
