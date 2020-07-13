@@ -1,3 +1,10 @@
+<?php 
+ include("inc/db.php");
+
+ ob_start();
+ session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +35,9 @@
     <div class="card-body login-card-body">
       <p class="login-box-msg">Sign in to start your session</p>
 
-      <form action="dashboard.php" method="post">
+      <form action="" method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" name="email" placeholder="Email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -38,7 +45,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" name="pass" placeholder="Password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -56,12 +63,52 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            <button type="submit" name="login" class="btn btn-primary btn-block">Sign In</button>
           </div>
           <!-- /.col -->
         </div>
       </form>
 
+      
+    <?php 
+      if (isset($_POST['login'])) {
+       
+       $email = $_POST['email'];
+       $pass  = $_POST['pass'];
+
+       $hasspass = sha1($pass);
+
+       $sql = "SELECT * FROM users WHERE email='$email'";
+
+       $user = mysqli_query($db,$sql);
+
+       while($row = mysqli_fetch_array($user)){
+        
+        $_SESSION['id']           = $row['id'];
+        $_SESSION['name']         = $row['fullname'];
+        $_SESSION['email']        = $row['email'];
+        $_SESSION['userPass']     = $row['password'];
+        $_SESSION['phone ']       = $row['phone'];
+        $_SESSION['address ']     = $row['address'];
+        $_SESSION['role ']        = $row['role'];
+        $_SESSION['status']       = $row['status'];
+        $_SESSION['image']        = $row['image'];
+
+          if ($hasspass == $_SESSION['userPass'] && $email == $_SESSION['email'] && $_SESSION['status']==1) {
+            header("Location: dashboard.php");
+
+          }else{
+            header('Location: index.php');
+          }
+          
+        }
+
+
+       
+      }
+    
+    ?>  
+      
       <div class="social-auth-links text-center mb-3">
         <p>- OR -</p>
         <a href="#" class="btn btn-block btn-primary">
@@ -94,3 +141,7 @@
 
 </body>
 </html>
+<?php 
+        ob_end_flush();
+
+?>

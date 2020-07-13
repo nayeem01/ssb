@@ -24,6 +24,8 @@
         <!-- /.content-header -->
 
 <?php 
+ if($_SESSION['role '] == 1){
+     
     $do = isset($_GET['do']) ? $_GET['do'] : 'manage';
 
     if ($do == 'manage') { ?>
@@ -488,8 +490,20 @@
             
             
             
-            }else{
+            }elseif(!empty($password)){
+
+                $hassedPass = sha1($password);
+                $sql = "UPDATE users SET password='$hassedPass' WHERE id = '$updateUserID'";
             
+                $addUser = mysqli_query($db, $sql);
+                
+                if ( $addUser ){
+                header("Location: user.php?do=manage");
+                }
+
+
+            }else{
+        
             
             // Update SQL
             $sql = "UPDATE users SET fullname='$fullname', email='$email', phone='$phone', address='$address', role='$role', status='$status' WHERE id = '$updateUserID'";
@@ -530,6 +544,12 @@
 
       }
     }
+
+
+ }else{
+
+    echo '<div class = "alert alert-warning">You dont have access</div>';
+ }
 ?>
 
 

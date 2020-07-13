@@ -15,10 +15,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="img/users/<?php echo $_SESSION['image']; ?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="dashboard.php" class="d-block">Alexander Pierce</a>
+          <a href="dashboard.php" class="d-block"><?php echo $_SESSION['name'];?></a>
         </div>
       </div>
 
@@ -102,8 +102,11 @@
              </li>
                 <!--  User menu end-->
 
+<?php 
 
-             <!--  User menu start-->
+  if ($_SESSION['role ']  == 1) {
+    ?>
+              <!--  User menu start-->
             <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-tree"></i>
@@ -154,7 +157,24 @@
               </ul>
             </li>
             <!--  platfrom  menu end-->
+    <?php
+  }
 
+?>
+
+            
+            
+            
+            <!-- sign out  -->
+            <li class="nav-item">
+            <a href="logout.php" class="nav-link">
+              
+              <p>
+               Sign out
+              </p>
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+           </li>
           <!-- <li class="nav-header">LABELS</li> -->
 
           </ul>
