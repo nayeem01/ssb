@@ -1,3 +1,10 @@
+<?php 
+ ob_start();
+ session_start();
+ include("inc/db.php");
+?>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,9 +35,9 @@
     <div class="card-body register-card-body">
       <p class="login-box-msg">Register a new membership</p>
 
-      <form action="../../index.html" method="post">
+      <form action="" method="POST">
         <div class="input-group mb-3">
-          <input type="text" class="form-control" placeholder="Full name">
+          <input type="text" class="form-control" placeholder="Full name" name="name">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-user"></span>
@@ -38,7 +45,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="email" class="form-control" placeholder="Email">
+          <input type="email" class="form-control" placeholder="Email" name="email">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
@@ -46,7 +53,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Password">
+          <input type="password" class="form-control" placeholder="Password" name="pass">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -54,7 +61,7 @@
           </div>
         </div>
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="Retype password">
+          <input type="password" class="form-control" placeholder="Retype password" name = "repass">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
@@ -72,11 +79,40 @@
           </div>
           <!-- /.col -->
           <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">Register</button>
+            <input type="submit" class="btn btn-primary btn-block" name="register">
           </div>
           <!-- /.col -->
         </div>
       </form>
+
+<?php 
+    
+    if (isset($_POST['register'])) {
+          
+      $name     = mysqli_real_escape_string($db,$_POST['name']);
+      $email    = mysqli_real_escape_string($db,$_POST['email']);
+      $password = mysqli_real_escape_string($db,$_POST['pass']);
+      $repass   = mysqli_real_escape_string($db,$_POST['repass']);
+     
+        if($password == $repass){
+          $hasspass = sha1($password);
+
+          $sql = "INSERT INTO users (fullname, email, username, password, role, status, join_date) 
+          VALUES('$name','$email','$name','$hasspass',2,0,now())";
+         
+         $registerUser = mysqli_query($db, $sql);
+          
+          if($registerUser){
+            header("Location: index.php");
+          }else{
+            echo "error";
+          }
+        }
+
+    }
+
+?>
+
 
       <div class="social-auth-links text-center">
         <p>- OR -</p>
@@ -105,3 +141,9 @@
 <script src="dist/js/adminlte.min.js"></script>
 </body>
 </html>
+
+
+<?php 
+ ob_end_flush();
+
+?>

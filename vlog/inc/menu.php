@@ -162,7 +162,29 @@
 
 ?>
 
-            
+<?php 
+
+
+if ($_SESSION['role ']  == 2) {
+  ?>
+        
+<li class="nav-item has-treeview">
+  <a href="myProfile.php" class="nav-link">
+        <i class="fas fa-user"></i>
+          <p>
+        my profile
+        <i class="fas fa-angle-left right"></i>
+      </p>
+    </a>
+ </li>
+           
+          
+  <?php
+}
+
+
+
+?>     
             
             
             <!-- sign out  -->

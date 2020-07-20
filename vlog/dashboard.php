@@ -63,7 +63,20 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3>
+                <?php 
+                
+                $sql = "SELECT * FROM users WHERE status='0'";
+                $newuser = mysqli_query($db,$sql);
+                $result = mysqli_num_rows($newuser);
+
+
+                echo $result;
+                
+                ?>
+                
+                </h3> 
+               
 
                 <p>User Registrations</p>
               </div>
