@@ -18,7 +18,9 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/manage', [BrandController::class,'index'])->name('brands.manage');
         Route::get('/create', [BrandController::class,'create'])->name('brands.create');
         Route::post('/store', [BrandController::class,'store'])->name('brands.store');
-        Route::get('/edit{id}', [BrandController::class,'edit'])->name('brands.edit');
-        Route::post('/edit{id}', [BrandController::class,'store'])->name('brands.update');
+        Route::get('/edit/{id}', [BrandController::class,'edit'])->name('brands.edit');
+        Route::post('/edit/{id}', [BrandController::class,'store'])->name('brands.update');
+        Route::post('/destroy/{id}', [BrandController::class,'destroy'])->name('brands.destroy');
+
     });
 });

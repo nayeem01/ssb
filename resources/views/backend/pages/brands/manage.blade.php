@@ -71,7 +71,7 @@
                                         </td>
                                         <td>
                                             <div class="btn-group">
-                                                <a href="{{ route('brand.edit', $brand->id )}}"
+                                                <a href="{{ route('brands.edit', $brand->id )}}"
                                                     class="btn btn-success btn-sm">Update</a>
                                                 <a href="" class="btn btn-danger btn-sm">Delete</a>
                                             </div>

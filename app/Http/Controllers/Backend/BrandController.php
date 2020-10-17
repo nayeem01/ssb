@@ -79,7 +79,7 @@ class BrandController extends Controller
     {
         $brand = Brand::find($id);
         if (!is_null($brand)){
-            return view('backend.pages.brands.edit', compact('id'));
+            return view('backend.pages.brands.edit', compact('brand'));
         }else{
             return view('brands.manage');
         }

@@ -44,20 +44,27 @@
                                 @csrf
                                 <div class="form-group">
                                     <label>Brand Name</label>
-                                    <input type="text" name="name" class="form-control" required="required">
+                                    <input type="text" name="name" class="form-control" required="required"
+                                        value="{{$brand->name}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea name="desc" class="form-control" rows="5"></textarea>
+                                    <textarea name="desc" class="form-control" rows="5">{{$brand->des}}</textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label>Image</label>
+                                    <label>Image</label> <br>
+
+                                    @if ($brand->image == NULL)
+                                    No image found
+                                    @else
+                                    <img src="{{ asset('backend/img/brands/' . $brand->image) }}" width="100">
+                                    @endif
                                     <input type="file" name="image" class="form-control-file">
                                 </div>
                                 <div class="form-group">
 
                                     <input type="submit" name="addBrand" class="btn btn-primary btn-block"
-                                        value="Addnew Brand">
+                                        value="save chamges">
                                 </div>
                             </form>
 
